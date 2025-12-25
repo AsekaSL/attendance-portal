@@ -99,23 +99,4 @@ body {
 
 
 /* Unified interaction styles for admin sidebar nav items */
-.sidebar-item{
-    border-radius:8px;
-    transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease, color .12s ease;
-    will-change: transform, box-shadow;
-}
-.sidebar-item:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,33,71,0.08);
-    background-color: #f2f6ff; /* kept earlier hover bg */
-    color: #002147;
-}
-.sidebar-item:active{
-    transform: translateY(0) scale(.995);
-    box-shadow: 0 6px 12px rgba(0,33,71,0.06);
-}
-.sidebar-item:focus{
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(0,33,71,0.06);
-    border-radius:8px;
-}
+/* Sidebar item styles removed from this PR — moved to a dedicated sidebar feature branch if needed */
