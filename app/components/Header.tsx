@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import logo from '@/public/brand/university logo.png'
+import logo from '@/public/brand/university-logo.png'
 import { Home, Info, Mail, Menu } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import logo from '@/public/brand/university logo.png'
+import logo from '@/public/brand/university-logo.png'
 import Link from 'next/link'
 
 const Footer = () => {
@@ -16,7 +16,7 @@ const Footer = () => {
 
             <div className='col links-col'>
                 <h4>
-                    Qick Links
+                    Quick Links
                 </h4>
                 <ul>
                     <li> <Link href={'/'}>Home</Link> </li>
@@ -35,7 +35,7 @@ const Footer = () => {
             </div>
         </div>
 
-        <div className='lagal'>
+        <div className='legal'>
             <div>© {new Date().getFullYear()} Faculty of Computing - University of Sri Jayewardenepura</div>
             <div className='socials'>
                 <span>All rights reserved.</span>
