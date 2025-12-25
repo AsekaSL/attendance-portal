@@ -4,11 +4,36 @@ import Image from 'next/image'
 import Link from 'next/link'
 import logo from '@/public/brand/university logo.png'
 import { Home, Info, Mail, Menu } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+            setMobileOpen(false);
+        }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+            setMobileOpen(false);
+        }
+    };
+
+    if (mobileOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleEscape);
+        };
+    }, [mobileOpen]);
 
     return (
     <header className="faculty-header flex justify-between items-center px-6 py-4 sticky top-0 z-50">
@@ -19,22 +44,22 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex gap-8 font-medium items-center">
-            <Link href={'/'} className="flex items-center gap-2">
+            <Link href={'/'} className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
                 <Home className="w-4 h-4"></Home>
                 Home
             </Link>
-            <Link href={'/about'} className="flex items-center gap-2">
+            <Link href={'/about'} className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
                 <Info className="w-4 h-4"></Info>
                 About
             </Link>
-            <Link href={'/contact'} className="flex items-center gap-2">
+            <Link href={'/contact'} className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
                 <Mail className="w-4 h-4"></Mail>
                 Contact
             </Link>
         </nav>
 
         <div className='flex items-center gap-4'>
-            <Link href={'/signup'} aria-label="Sign up for an account">
+            <Link href={'/signup'} aria-label="Sign up for an account" className="mt-2" onClick={() => setMobileOpen(false)}>
                 <button className="cta-btn hidden md:inline-block">
                     Get Started
                 </button>
@@ -53,8 +78,8 @@ const Header = () => {
         </div>
 
         {/* Mobile menu — rendered for small screens when toggled open */}
-        <div id="mobile-menu" className={`md:hidden ${mobileOpen ? 'block' : 'hidden'}`}>
-            <nav className="flex flex-col gap-3 mt-3 p-4 bg-white shadow rounded">
+        <div id="mobile-menu" ref={mobileMenuRef} className={`md:hidden ${mobileOpen ? 'block' : 'hidden'} absolute top-full left-0 right-0 bg-white border-t border-gray-200`}>
+            <nav className="flex flex-col gap-3 p-4 shadow-lg">
                 <Link href={'/'} className="flex items-center gap-2">
                     <Home className="w-4 h-4" />
                     Home
