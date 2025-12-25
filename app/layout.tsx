@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 const outfit = Outfit({
-
+  subsets: ["latin"],
 })
 
 export const metadata: Metadata = {
